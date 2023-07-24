@@ -2,6 +2,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+import TvItem from './TvItem';
+
 const LOCAL_STORAGE_TV_FAVORITES = 'tvFavorites';
 const CLASS_NAME_FAVORITE = 'favorite';
 
@@ -39,47 +45,41 @@ const TvList = props => {
   }
 
   return (
-    <div>
-      <ListGroup>
-        <h3>Favorites</h3>
-        {
-          tvFavorites.map(tvFavorite => {
-            return (
-              <ListGroup.Item>
-                <input
-                  type="checkbox"
-                  value={tvFavorite?.id}
-                  className={CLASS_NAME_FAVORITE}
-                  onChange={handleFavoriteChange}
-                  checked
+    <Container className='tv-list'>
+      <Row>
+        <Col>
+          <ListGroup>
+            <label className='list-header'>Search results</label>
+            {!props.tvList.length && <span className='list-msg'>No results</span>}
+            {
+              props.tvList.map(data => (
+                <TvItem
+                  data={data}
+                  isChecked={!!(tvFavorites.find(({ id }) => id === data?.id))}
+                  handleCheckboxChange={handleFavoriteChange}
+                  ref={setTvShowCheckboxRef(data?.id)}
                 />
-                <span>{tvFavorite.name}</span>
-              </ListGroup.Item>
-            );
-          })
-        }
-      </ListGroup>
-      <ListGroup>
-        {props.tvList.length && <h3>Search results</h3>}
-        {
-          props.tvList.map(item => {
-
-            return (
-              <ListGroup.Item>
-                <input
-                  type='checkbox'
-                  value={item?.id}
-                  onChange={handleFavoriteChange}
-                  ref={setTvShowCheckboxRef(item?.id)}
-                  checked={!!(tvFavorites.find(({ id }) => id === item?.id))}
+              ))
+            }
+          </ListGroup>
+        </Col>
+        <Col>
+          <ListGroup>
+            <label className='list-header'>Favorites</label>
+            {
+              tvFavorites.map(data => (
+                <TvItem
+                  data={data}
+                  inputClassName={CLASS_NAME_FAVORITE}
+                  handleCheckboxChange={handleFavoriteChange}
+                  isChecked={true}
                 />
-                <span>{item.name}</span>
-              </ListGroup.Item>
-            );
-          })
-        }
-      </ListGroup>
-    </div>
+              ))
+            }
+          </ListGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

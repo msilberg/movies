@@ -5,30 +5,27 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const LOCAL_STORAGE_TV_SEARCH = 'tvSearch';
-
-const SearchInput = (props) => {
-  const [tvSearch, setTvSearch] = useState(localStorage.getItem(LOCAL_STORAGE_TV_SEARCH));
+const SearchInput = props => {
+  const [tvSearch, setTvSearch] = useState('');
 
   useEffect(() => {
     props.cb(tvSearch);
-    localStorage.setItem(LOCAL_STORAGE_TV_SEARCH, tvSearch)
   }, [props, tvSearch]);
 
   return (
-    <Container>
+    <Container className='tv-search'>
       <Row>
         <Col>
-          <label for='tv-search'>The TV Series Database</label>
+          <label for='tv-search' className='search-header'>The TV Series Database</label>
         </Col>
       </Row>
       <Row>
         <Col>
           <input
             type='text'
-            id='tv-search'
             placeholder='Search...'
             value={tvSearch}
+            className='tv-search-input'
             onChange={event => {
               setTvSearch(event.target.value);
             }}

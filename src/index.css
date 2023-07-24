@@ -1,13 +1,117 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Classes */
+
+div {
+  color: #2C3E50;
+}
+
+/* SearchInput styling */
+.search-header {
+  float: left;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.tv-search-input {
+  float: left;
+  width: 316px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* TvList styling */
+.list-header {
+  float: left;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 10px 0;
+}
+
+.list-msg {
+  font-size: 16px;
+  float: left;
+  text-align: left;
+}
+
+/* TvItem styling */
+.tv-list-item {
+  width: 400px;
+  height: 120px;
+  border-radius: 8px;
+  padding: 8px !important;
+  margin: 8px 8px 8px 0;
+  box-shadow: 0px 0px 4px 2px rgba(82,82,82,0.15);
+}
+
+.tv-list-item .container {
+  padding: 0 !important;
+}
+
+.tv-list-item input[type="checkbox"] {
+  display: none;
+}
+.check-mark {
+  cursor: pointer;
+  float: right;
+  text-align: right;
+  font-size: 20px;
+}
+.check-mark-checked {
+  color: #F04D4D;
+}
+
+.tv-list-item img {
+  float: left;
+  width: 75px;
+  height: 105px;
+  border-radius: 8px;
+  object-fit: cover; 
+}
+
+.tv-list-item-name {
+  float: left;
+  text-align: left;
+  margin-left: 20px;
+  font-size: 22px;
+  line-height: 26.63px;
+  max-width: 250px;
+}
+
+.tv-list-item-rating {
+  float: left;
+  text-align: left;
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+.tv-list-item-genres {
+  position: absolute;
+  bottom: 10px;
+  left: 95px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 16.94px;
+  max-width: 290px;
+}
+
+.tv-list-item-name, .tv-list-item-rating, .tv-list-item-genres {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }

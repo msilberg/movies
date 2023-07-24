@@ -1,5 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -27,12 +30,28 @@ function App() {
           if (Array.isArray(data)) {
             setTvList(
               data
-                .map(({ show: { id, name } }) => ({
-                  id, name
+                .map(({
+                  show: {
+                    id,
+                    name,
+                    rating: {
+                      average: averageRating
+                    },
+                    genres,
+                    image,
+                  } 
+                }) => ({
+                  id,
+                  name,
+                  rating: averageRating,
+                  genres,
+                  imageUrl: image?.medium,
                 }))
             );
           }
         });
+    } else {
+      setTvList([]);
     }
   }, [tvListSearch]); 
 
@@ -40,10 +59,12 @@ function App() {
     <div className="App">
       <Container>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <SearchInput cb={updateTvListSearch} />
           </Col>
-          <Col xs={6}>
+        </Row>
+        <Row>
+          <Col xs={12}>
             <TvList tvList={tvList} />
           </Col>
         </Row>
